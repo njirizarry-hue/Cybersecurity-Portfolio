@@ -15,7 +15,15 @@ This portfolio documents my technical work, investigative approach, findings, an
 
 ## Cybersecurity Projects
 
-Investigation reports, detection exercises, and security lab documentation will be added here as projects are completed and reviewed.
+### Featured SOC Investigations
+
+#### [SOC Investigation 001: Suspected SSH Brute-Force Activity](SOC-Investigations/SSH-Brute-Force/README.md)
+
+**Tools:** Splunk, SPL, Linux Authentication Logs
+
+Analyzed suspicious authentication events targeting the root account on a simulated Linux mail server. Used SPL searches and regular expressions to examine SSH-related failures and summarize source IP activity.
+
+**Skills demonstrated:** Log analysis, security investigation, SPL queries, regular expressions, and technical documentation.
 
 ## Current Development
 
