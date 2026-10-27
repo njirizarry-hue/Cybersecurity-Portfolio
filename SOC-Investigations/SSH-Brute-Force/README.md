@@ -124,6 +124,18 @@ I also learned the importance of distinguishing suspicious patterns from confirm
 
 Screenshots from the original Splunk lab will be added here to demonstrate the search process, observed authentication events, and investigation results.
 
+### Evidence 1 — Initial Splunk Search
+
+![Initial Splunk authentication search results](splunk-initial-search.png)
+
+*Figure 1: Initial exploration of Linux authentication events in Splunk.*
+
+### Evidence 2 — SSH Authentication Activity
+
+![Splunk SSH authentication events](splunk-ssh-events.png)
+
+*Figure 2: Search results showing SSH-related authentication failures.*
+
 ## 9. Training Disclosure
 
 This investigation was conducted using simulated laboratory data for educational purposes. It does not represent a production security incident.
