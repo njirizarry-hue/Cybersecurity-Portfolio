@@ -25,6 +25,16 @@ Analyzed suspicious authentication events targeting the root account on a simula
 
 **Skills demonstrated:** Log analysis, security investigation, SPL queries, regular expressions, and technical documentation.
 
+### Governance, Risk, and Compliance
+
+**[NIST Policy Analysis: Risk Assessment and Access Control](GRC/NIST-Security-Policy-Analysis/README.md)**
+
+**Framework:** NIST Cybersecurity Framework 1.1
+
+Analyzed public-sector risk assessment and access control policies, examined responsibilities and access review schedules, and proposed improvements to policy clarity and accountability.
+
+**Skills demonstrated:** Security policy analysis, risk assessment concepts, access governance, and NIST framework mapping.
+  
 ## Current Development
 
 - TryHackMe SOC Level 1 learning path
