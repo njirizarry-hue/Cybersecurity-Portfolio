@@ -49,7 +49,8 @@ openssl req -new -x509 -nodes \
 
 The command created the certificate and a private key without a passphrase. The lack of a passphrase was a lab convenience, rather than a universal Wireshark requirement.
 
-![OpenSSL command generating the localhost certificate and private key](images/01-generate-certificate.png)
+<img width="618" height="401" alt="01-generate-certificate" src="https://github.com/user-attachments/assets/94d4d92c-5121-4312-9553-679fb8a97ee3" />
+
 
 ### 2. Start the TLS test server
 
@@ -65,7 +66,8 @@ The terminal displayed `ACCEPT`, and the subsequent capture showed connections t
 
 The cipher setting applies to TLS 1.2 and earlier; it does not itself disable TLS 1.3. My original notes describe disabling TLS 1.3 on the client. The capture provides the evidence that this exchange used TLS 1.2.
 
-![OpenSSL test server started and waiting for connections](images/03-start-tls-server.png)
+<img width="628" height="99" alt="03-start-tls-server" src="https://github.com/user-attachments/assets/e009c463-941f-4b98-88fd-11c14c9314a9" />
+
 
 ### 3. Capture the local connection
 
@@ -73,7 +75,7 @@ I captured on `lo` because the client and server ran on the same VM. My notes de
 
 The capture shows the TCP connection, TLS handshake messages, and TLS application-data records. The handshake includes **Client Key Exchange**. Before decryption, the HTTP payload is not readable in the packet list, although connection and handshake information remains visible.
 
-![Loopback capture showing the TLS 1.2 handshake and encrypted application data](images/04-encrypted-tls-capture.png)
+<img width="1121" height="530" alt="04-encrypted-tls-capture" src="https://github.com/user-attachments/assets/5ffb0927-4f3b-44e1-834a-7e63788e28f7" />
 
 ### 4. Configure the matching private key
 
@@ -81,13 +83,15 @@ In the Wireshark version used for the lab, I opened **Edit → Preferences → P
 
 Current versions also provide **Preferences → RSA Keys**. The screenshot records the older dialog used in this exercise.
 
-![Wireshark RSA key configuration referencing the local server private key](images/05-wireshark-rsa-key-settings.png)
+<img width="1194" height="505" alt="05-wireshark-rsa-key-settings" src="https://github.com/user-attachments/assets/9952b77c-ec3e-4b11-8409-cfba03638c42" />
+
 
 ### 5. Verify application-layer visibility
 
 After configuring the key, Wireshark identified the HTTP request in the captured session. The highlighted packet shows `GET / HTTP/1.0`.
 
-![Wireshark packet list displaying the decrypted HTTP GET request](images/06-decrypted-http-packet.png)
+<img width="624" height="242" alt="06-decrypted-http-packet" src="https://github.com/user-attachments/assets/f7b7dde5-3b03-45f3-a76b-42b5e16109fc" />
+
 
 I then used **Follow → TLS Stream** to inspect both sides of the exchange:
 
@@ -99,7 +103,8 @@ I then used **Follow → TLS Stream** to inspect both sides of the exchange:
 | Response body | OpenSSL test-server status page |
 | Cipher information | `AES256-SHA` appears under ciphers common to the endpoints |
 
-![Follow TLS Stream showing the HTTP request, successful response, and server HTML](images/07-follow-tls-stream.png)
+<img width="1231" height="471" alt="07-follow-tls-stream" src="https://github.com/user-attachments/assets/229adbea-de6a-4359-9f5d-dcfad82a8b16" />
+
 
 The response also lists TLS 1.3 cipher suites supported by the server. That capability list does not mean this connection used TLS 1.3; the packet capture identifies the exchange as TLS 1.2.
 
@@ -135,9 +140,11 @@ For defensive investigations, this helps me determine whether packet contents ca
 
 The file listing confirms that `server.crt` and `server.pem` were created. The second screenshot continues the HTML response with session and server statistics.
 
-![Terminal listing of the generated certificate and private-key files](images/02-certificate-files.png)
+<img width="492" height="103" alt="02-certificate-files" src="https://github.com/user-attachments/assets/db395f09-c08a-4b6c-9329-de901dfd585b" />
 
-![Additional server session details visible in Follow TLS Stream](images/08-server-session-details.png)
+
+<img width="1225" height="480" alt="08-server-session-details" src="https://github.com/user-attachments/assets/d70ed2dd-c3dc-43c1-8763-a22e0e5d5eae" />
+
 
 </details>
 
